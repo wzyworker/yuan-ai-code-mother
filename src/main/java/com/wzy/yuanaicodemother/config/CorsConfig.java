@@ -1,5 +1,6 @@
 package com.wzy.yuanaicodemother.config;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -8,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @date 2025年09月06日 23:06
  * 全局跨域配置
  */
+@Configuration
 public class CorsConfig implements WebMvcConfigurer {
 
     @Override
