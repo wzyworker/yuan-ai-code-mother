@@ -1,4 +1,4 @@
-package com.wzy.yuanaicodemother.model.dto;
+package com.wzy.yuanaicodemother.model.dto.user;
 
 import com.wzy.yuanaicodemother.common.PageRequest;
 import lombok.Data;

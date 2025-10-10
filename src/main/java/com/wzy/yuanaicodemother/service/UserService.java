@@ -2,7 +2,7 @@ package com.wzy.yuanaicodemother.service;
 
 import com.mybatisflex.core.query.QueryWrapper;
 import com.mybatisflex.core.service.IService;
-import com.wzy.yuanaicodemother.model.dto.UserQueryRequest;
+import com.wzy.yuanaicodemother.model.dto.user.UserQueryRequest;
 import com.wzy.yuanaicodemother.model.entity.User;
 import com.wzy.yuanaicodemother.model.vo.LoginUserVO;
 import com.wzy.yuanaicodemother.model.vo.UserVO;
