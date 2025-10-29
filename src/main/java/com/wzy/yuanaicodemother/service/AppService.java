@@ -4,7 +4,9 @@ import com.mybatisflex.core.query.QueryWrapper;
 import com.mybatisflex.core.service.IService;
 import com.wzy.yuanaicodemother.model.dto.app.AppQueryRequest;
 import com.wzy.yuanaicodemother.model.entity.App;
+import com.wzy.yuanaicodemother.model.entity.User;
 import com.wzy.yuanaicodemother.model.vo.AppVO;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
 
@@ -14,6 +16,25 @@ import java.util.List;
  * @author wzy
  */
 public interface AppService extends IService<App> {
+
+    /**
+     * 生成应用代码
+     *
+     * @param appId     应用 id
+     * @param message   提示词
+     * @param loginUser 登录用户
+     * @return 代码生成结果（流式对象）
+     */
+    Flux<String> chatToGenCode(Long appId, String message, User loginUser);
+
+    /**
+     * 应用部署
+     *
+     * @param appId     应用 id
+     * @param loginUser 登录用户
+     * @return 部署结果（url）
+     */
+    String deployApp(Long appId, User loginUser);
 
     /**
      * 获取应用封装类
