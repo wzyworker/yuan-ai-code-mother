@@ -13,7 +13,7 @@
       </a-form-item>
     </a-form>
     <a-divider />
-    <!--  表格数据  -->
+    <!-- 表格 -->
     <a-table
       :columns="columns"
       :data-source="data"
@@ -22,7 +22,7 @@
     >
       <template #bodyCell="{ column, record }">
         <template v-if="column.dataIndex === 'userAvatar'">
-          <a-image :src="record.userAvatar" :width="50" />
+          <a-image :src="record.userAvatar" :width="120" />
         </template>
         <template v-else-if="column.dataIndex === 'userRole'">
           <div v-if="record.userRole === 'admin'">
@@ -47,6 +47,7 @@ import { computed, onMounted, reactive, ref } from 'vue'
 import { deleteUser, listUserVoByPage } from '@/api/userController.ts'
 import { message } from 'ant-design-vue'
 import dayjs from 'dayjs'
+
 const columns = [
   {
     title: 'id',
@@ -86,10 +87,10 @@ const columns = [
 const data = ref<API.UserVO[]>([])
 const total = ref(0)
 
-// 搜索表单
+// 搜索条件
 const searchParams = reactive<API.UserQueryRequest>({
   pageNum: 1,
-  pageSize: 1,
+  pageSize: 10,
 })
 
 // 获取数据
@@ -97,7 +98,7 @@ const fetchData = async () => {
   const res = await listUserVoByPage({
     ...searchParams,
   })
-  if (res.data.code === 0 && res.data.data) {
+  if (res.data.data) {
     data.value = res.data.data.records ?? []
     total.value = res.data.data.totalRow ?? 0
   } else {
@@ -138,6 +139,7 @@ const doDelete = async (id: string) => {
   const res = await deleteUser({ id })
   if (res.data.code === 0) {
     message.success('删除成功')
+    // 刷新数据
     fetchData()
   } else {
     message.error('删除失败：' + res.data.message)
@@ -152,6 +154,8 @@ onMounted(() => {
 
 <style scoped>
 #userManagePage {
-  width: 1200px;
+  padding: 24px;
+  background: white;
+  margin-top: 16px;
 }
 </style>
