@@ -51,56 +51,86 @@ declare namespace API {
 
   type BaseResponseAppVO = {
     code?: number
-    data?: AppVO
     message?: string
+    data?: AppVO
   }
 
   type BaseResponseBoolean = {
     code?: number
-    data?: boolean
     message?: string
+    data?: boolean
   }
 
   type BaseResponseLoginUserVO = {
     code?: number
-    data?: LoginUserVO
     message?: string
+    data?: LoginUserVO
   }
 
   type BaseResponseLong = {
     code?: number
-    data?: number
     message?: string
+    data?: number
   }
 
   type BaseResponsePageAppVO = {
     code?: number
-    data?: PageAppVO
     message?: string
+    data?: PageAppVO
+  }
+
+  type BaseResponsePageChatHistory = {
+    code?: number
+    message?: string
+    data?: PageChatHistory
   }
 
   type BaseResponsePageUserVO = {
     code?: number
-    data?: PageUserVO
     message?: string
+    data?: PageUserVO
   }
 
   type BaseResponseString = {
     code?: number
-    data?: string
     message?: string
+    data?: string
   }
 
   type BaseResponseUser = {
     code?: number
-    data?: User
     message?: string
+    data?: User
   }
 
   type BaseResponseUserVO = {
     code?: number
-    data?: UserVO
     message?: string
+    data?: UserVO
+  }
+
+  type ChatHistory = {
+    id?: number
+    message?: string
+    messageType?: string
+    appId?: number
+    userId?: number
+    createTime?: string
+    updateTime?: string
+    isDelete?: number
+  }
+
+  type ChatHistoryQueryRequest = {
+    pageNum?: number
+    pageSize?: number
+    sortField?: string
+    sortOrder?: string
+    id?: number
+    message?: string
+    messageType?: string
+    appId?: number
+    userId?: number
+    lastCreateTime?: string
   }
 
   type chatToGenCodeParams = {
@@ -128,6 +158,12 @@ declare namespace API {
     id: number
   }
 
+  type listAppChatHistoryByPageParams = {
+    appId: number
+    pageSize?: number
+    lastCreateTime?: string
+  }
+
   type LoginUserVO = {
     id?: number
     userAccount?: string
@@ -141,6 +177,15 @@ declare namespace API {
 
   type PageAppVO = {
     records?: AppVO[]
+    pageNumber?: number
+    pageSize?: number
+    totalPage?: number
+    totalRow?: number
+    optimizeCountQuery?: boolean
+  }
+
+  type PageChatHistory = {
+    records?: ChatHistory[]
     pageNumber?: number
     pageSize?: number
     totalPage?: number
